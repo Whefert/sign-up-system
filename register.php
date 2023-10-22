@@ -1,5 +1,6 @@
 <?php
-include 'config.php';
+include 'session.php';
+include 'functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ include 'config.php';
         </div>
         <div class="row">
             <div class="col align-items-center">
-                <form action="" method="post">
+                <form method="POST">
                 <div class="mb-3">
                     <label for="fullName" class="form-label">Full Name</label>
                     <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Jane Doe" required>
@@ -42,9 +43,21 @@ include 'config.php';
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                     <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" minlength="8" required>
+                <div id="warning"></div>
                 </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
                 </form>
+                <?php
+                // if($_POST['submit']){
+
+                   if( $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
+                    $first_name = explode(" ",$_POST['fullName'])[0];
+                    $last_name = explode(" ",$_POST['fullName'])[1];
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    addUser($first_name, $last_name, $email, $password);
+                    }
+?>
             </div>
         </div>
     </div>
@@ -54,5 +67,6 @@ include 'config.php';
 <footer>
     <p>Done by: Jefferson Daley, stduent ID: 20202583</p>
 </footer>
+<script src="script.js"></script>
 </body>
 </html>
