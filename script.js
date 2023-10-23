@@ -5,12 +5,10 @@ const confirmPassword = document.getElementById("confirmPassword");
 
 confirmPassword.addEventListener("keyup", comparePassword);
 
-//check if password and confirm password text value inputs match
+//Check if password and confirm password text value inputs match
+// Disable submit button if they don't match and give user a warning
 function comparePassword() {
   if (password.value != confirmPassword.value) {
-    console.log(password.innerText);
-    console.log("empty");
-    //   if (password.innerText != confirmPassword.innerText) {
     warning.innerHTML =
       "<div class='alert alert-danger mt-2' role='alert'> Password confirmation must match exactly with password!</div>";
     submitButton.disabled = true;
